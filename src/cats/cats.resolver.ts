@@ -1,10 +1,8 @@
-import { Resolver, Query, Mutation, Args, Int, Subscription } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-// import { Cat } from './cat.schema';
 import { CatsService } from './cats.service';
 import { CreateCatInput } from './dto/create-cat.input';
 import { UpdateCatInput } from './dto/update-cat.input';
-// import { CatsArgs } from './dto/cats.args';
 import { Cat } from './models/cat.model';
 
 const pubSub = new PubSub();
