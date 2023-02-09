@@ -6,7 +6,7 @@ directive @upper on FIELD_DEFINITION
 
 """cat """
 type Cat {
-  id: ID!
+  id: ID
   name: String!
   age: Int!
   breed: String
@@ -19,7 +19,7 @@ type Query {
 
 type Mutation {
   createCat(createCatInput: CreateCatInput!): Cat!
-  updateCat(updateCatInput: UpdateCatInput!): Cat!
+  updateCat(updateCatInput: UpdateCatInput!): Boolean!
   removeCat(id: String!): Boolean!
 }
 
@@ -33,7 +33,7 @@ input UpdateCatInput {
   name: String
   age: Int
   breed: String
-  id: Int!
+  id: String!
 }
 
 type Subscription {

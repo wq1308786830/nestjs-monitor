@@ -1,9 +1,9 @@
 import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
+import { Cat } from './cat.schema';
 import { CatsService } from './cats.service';
 import { CreateCatInput } from './dto/create-cat.input';
 import { UpdateCatInput } from './dto/update-cat.input';
-import { Cat } from './models/cat.model';
 
 const pubSub = new PubSub();
 
@@ -24,14 +24,13 @@ export class CatsResolver {
   @Mutation(() => Cat)
   async createCat(@Args('createCatInput') createCatInput: CreateCatInput): Promise<Cat> {
     const resp = await this.catsService.create(createCatInput);
-    console.log('createCat123', resp);
     
     return resp;
   }
 
-  @Mutation(() => Cat)
+  @Mutation(() => Boolean)
   updateCat(@Args('updateCatInput') updateCatInput: UpdateCatInput) {
-    return this.catsService.update(updateCatInput.id, updateCatInput);
+    return this.catsService.update(updateCatInput);
   }
 
   @Mutation(() => Boolean)
@@ -39,7 +38,7 @@ export class CatsResolver {
     return this.catsService.remove(id);
   }
 
-  @Subscription(returns => Cat)
+  @Subscription(() => Cat)
   catAdded() {
     return pubSub.asyncIterator('catAdded');
   }

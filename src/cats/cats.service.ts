@@ -16,20 +16,24 @@ export class CatsService {
   }
 
   async findAll(): Promise<Cat[]> {
-    const resp = await this.catRepository.find();
+    const resp = await this.catRepository.find().exec();
+
     return resp;
   }
 
   async findOne(id: string): Promise<Cat> {
-    return await this.catRepository.findOne({ _id: id });
+    return await this.catRepository.findOne({ id });
   }
 
-  async update(id: number, updateCatInput: UpdateCatInput) {
-    return `This action updates a #${id} cat`;
+  async update(updateCatInput: UpdateCatInput): Promise<boolean> {
+    const resp =  await this.catRepository.updateOne(updateCatInput);
+    console.log(resp);
+
+    return !!resp.modifiedCount;
   }
 
   async remove(id: string): Promise<boolean> {
-    const resp = await this.catRepository.deleteOne({ _id: id });
+    const resp = await this.catRepository.deleteOne({ id });
     
     return !!resp.deletedCount;
   }
