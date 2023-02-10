@@ -5,6 +5,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { CatsModule } from './cats/cats.module';
 import { upperDirectiveTransformer } from './common/directives/upper-case.directives';
+import { WebPerformanceModule } from './web-performance/web-performance.module';
+import { ResourcePerformanceModule } from './resource-performance/resource-performance.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { upperDirectiveTransformer } from './common/directives/upper-case.direct
       // playground: false,
     }),
     CatsModule,
+    WebPerformanceModule,
+    ResourcePerformanceModule,
   ],
 })
 export class AppModule {}

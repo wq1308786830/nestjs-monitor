@@ -12,15 +12,125 @@ type Cat {
   breed: String
 }
 
+"""webPerformance """
+type WebPerformance {
+  id: ID!
+
+  """上报时间"""
+  time: Float
+
+  """dom开始渲染时间"""
+  domLoading: Float
+
+  """页面导航开始时间"""
+  navigationStart: Float
+
+  """重定向完成时间"""
+  redirectEnd: Float
+
+  """重定向开始时间"""
+  redirectStart: Float
+
+  """dom渲染完成时间"""
+  domComplete: Float
+
+  """页面加载完成时间"""
+  loadEventEnd: Float
+
+  """页面卸载完成时间"""
+  unloadEventEnd: Float
+
+  """页面卸载开始时间"""
+  unloadEventStart: Float
+
+  """请求收到结果的时间"""
+  responseEnd: Float
+
+  """请求发送时间"""
+  requestStart: Float
+}
+
+"""resourcePerformance """
+type ResourcePerformance {
+  id: ID!
+
+  """entry的名称"""
+  name: String
+
+  """entry的类型"""
+  entryType: String
+
+  """entry开始的时间"""
+  startTime: Float
+
+  """entry持续的时间"""
+  duration: Float
+
+  """上报时间"""
+  time: Float
+
+  """加载器"""
+  initiatorType: String
+
+  """页面导航开始时间"""
+  domainLookupStart: Float
+
+  """页面导航开始时间"""
+  domainLookupEnd: Float
+
+  """重定向完成时间"""
+  redirectEnd: Float
+
+  """重定向开始时间"""
+  redirectStart: Float
+
+  """dom渲染完成时间"""
+  connectStart: Float
+
+  """页面加载完成时间"""
+  connectEnd: Float
+
+  """页面卸载完成时间"""
+  fetchStart: Float
+
+  """页面卸载开始时间"""
+  responseStart: Float
+
+  """请求收到结果的时间"""
+  responseEnd: Float
+
+  """请求发送时间"""
+  requestStart: Float
+
+  """请求发送时间"""
+  responseStatus: Float
+
+  """请求发送时间"""
+  secureConnectionStart: Float
+
+  """请求发送时间"""
+  workerStart: Float
+}
+
 type Query {
   cats: [Cat!]!
   cat(id: String!): Cat!
+  webPerformances: [WebPerformance!]!
+  webPerformance(id: String!): WebPerformance!
+  resourcePerformances: [ResourcePerformance!]!
+  resourcePerformance(id: String!): ResourcePerformance!
 }
 
 type Mutation {
   createCat(createCatInput: CreateCatInput!): Cat!
   updateCat(updateCatInput: UpdateCatInput!): Boolean!
   removeCat(id: String!): Boolean!
+  createWebPerformance(createWebPerformanceInput: CreateWebPerformanceInput!): WebPerformance!
+  updateWebPerformance(updateWebPerformanceInput: UpdateWebPerformanceInput!): Float!
+  removeWebPerformance(id: String!): Float!
+  createResourcePerformance(input: CreateResourcePerformanceInput!): ResourcePerformance!
+  updateResourcePerformance(updateResourcePerformanceInput: UpdateResourcePerformanceInput!): Float!
+  removeResourcePerformance(id: String!): Float!
 }
 
 input CreateCatInput {
@@ -33,6 +143,184 @@ input UpdateCatInput {
   name: String
   age: Int
   breed: String
+  id: String!
+}
+
+input CreateWebPerformanceInput {
+  """dom开始渲染时间"""
+  domLoading: Float
+
+  """页面导航开始时间"""
+  navigationStart: Float
+
+  """重定向完成时间"""
+  redirectEnd: Float
+
+  """重定向开始时间"""
+  redirectStart: Float
+
+  """dom渲染完成时间"""
+  domComplete: Float
+
+  """页面加载完成时间"""
+  loadEventEnd: Float
+
+  """页面卸载完成时间"""
+  unloadEventEnd: Float
+
+  """页面卸载开始时间"""
+  unloadEventStart: Float
+
+  """请求收到结果的时间"""
+  responseEnd: Float
+
+  """请求发送时间"""
+  requestStart: Float
+}
+
+input UpdateWebPerformanceInput {
+  """dom开始渲染时间"""
+  domLoading: Float
+
+  """页面导航开始时间"""
+  navigationStart: Float
+
+  """重定向完成时间"""
+  redirectEnd: Float
+
+  """重定向开始时间"""
+  redirectStart: Float
+
+  """dom渲染完成时间"""
+  domComplete: Float
+
+  """页面加载完成时间"""
+  loadEventEnd: Float
+
+  """页面卸载完成时间"""
+  unloadEventEnd: Float
+
+  """页面卸载开始时间"""
+  unloadEventStart: Float
+
+  """请求收到结果的时间"""
+  responseEnd: Float
+
+  """请求发送时间"""
+  requestStart: Float
+  id: String!
+}
+
+input CreateResourcePerformanceInput {
+  """entry的名称"""
+  name: String
+
+  """entry的类型"""
+  entryType: String
+
+  """"""
+  duration: Float
+
+  """"""
+  initiatorType: String
+
+  """"""
+  domainLookupStart: Float
+
+  """"""
+  domainLookupEnd: Float
+
+  """"""
+  redirectEnd: Float
+
+  """"""
+  redirectStart: Float
+
+  """"""
+  connectStart: Float
+
+  """"""
+  connectEnd: Float
+
+  """"""
+  fetchStart: Float
+
+  """"""
+  responseStart: Float
+
+  """"""
+  responseEnd: Float
+
+  """"""
+  requestStart: Float
+
+  """"""
+  responseStatus: Float
+
+  """"""
+  secureConnectionStart: Float
+
+  """"""
+  startTime: Float
+
+  """"""
+  workerStart: Float
+}
+
+input UpdateResourcePerformanceInput {
+  """entry的名称"""
+  name: String
+
+  """entry的类型"""
+  entryType: String
+
+  """"""
+  duration: Float
+
+  """"""
+  initiatorType: String
+
+  """"""
+  domainLookupStart: Float
+
+  """"""
+  domainLookupEnd: Float
+
+  """"""
+  redirectEnd: Float
+
+  """"""
+  redirectStart: Float
+
+  """"""
+  connectStart: Float
+
+  """"""
+  connectEnd: Float
+
+  """"""
+  fetchStart: Float
+
+  """"""
+  responseStart: Float
+
+  """"""
+  responseEnd: Float
+
+  """"""
+  requestStart: Float
+
+  """"""
+  responseStatus: Float
+
+  """"""
+  secureConnectionStart: Float
+
+  """"""
+  startTime: Float
+
+  """"""
+  workerStart: Float
   id: String!
 }
 
