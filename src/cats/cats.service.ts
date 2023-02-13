@@ -7,12 +7,14 @@ import { Cat, CatDocument } from './cat.schema';
 
 @Injectable()
 export class CatsService {
-  constructor(@InjectModel(Cat.name) private readonly catRepository: Model<CatDocument>) {}
+  constructor(
+    @InjectModel(Cat.name) private readonly catRepository: Model<CatDocument>,
+  ) {}
 
   async create(createCatInput: CreateCatInput): Promise<Cat> {
     const resp = await this.catRepository.create(createCatInput);
-    
-    return resp
+
+    return resp;
   }
 
   async findAll(): Promise<Cat[]> {
@@ -26,7 +28,7 @@ export class CatsService {
   }
 
   async update(updateCatInput: UpdateCatInput): Promise<boolean> {
-    const resp =  await this.catRepository.updateOne(updateCatInput);
+    const resp = await this.catRepository.updateOne(updateCatInput);
     console.log(resp);
 
     return !!resp.modifiedCount;
@@ -34,7 +36,7 @@ export class CatsService {
 
   async remove(id: string): Promise<boolean> {
     const resp = await this.catRepository.deleteOne({ id });
-    
+
     return !!resp.deletedCount;
   }
 }

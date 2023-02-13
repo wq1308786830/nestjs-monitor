@@ -9,7 +9,10 @@ export class WebPerformanceResolver {
   constructor(private readonly webPerformanceService: WebPerformanceService) {}
 
   @Mutation(() => WebPerformance)
-  createWebPerformance(@Args('createWebPerformanceInput') createWebPerformanceInput: CreateWebPerformanceInput) {
+  createWebPerformance(
+    @Args('createWebPerformanceInput')
+    createWebPerformanceInput: CreateWebPerformanceInput,
+  ) {
     return this.webPerformanceService.create(createWebPerformanceInput);
   }
 
@@ -24,7 +27,10 @@ export class WebPerformanceResolver {
   }
 
   @Mutation(() => Number)
-  updateWebPerformance(@Args('updateWebPerformanceInput') updateWebPerformanceInput: UpdateWebPerformanceInput): Promise<number> {
+  updateWebPerformance(
+    @Args('updateWebPerformanceInput')
+    updateWebPerformanceInput: UpdateWebPerformanceInput,
+  ): Promise<number> {
     return this.webPerformanceService.update(updateWebPerformanceInput);
   }
 

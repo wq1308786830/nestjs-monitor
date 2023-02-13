@@ -6,16 +6,28 @@ import { UpdateResourcePerformanceInput } from './dto/update-resource-performanc
 
 @Resolver(() => ResourcePerformance)
 export class ResourcePerformanceResolver {
-  constructor(private readonly resourcePerformanceService: ResourcePerformanceService) {}
+  constructor(
+    private readonly resourcePerformanceService: ResourcePerformanceService,
+  ) {}
 
   @Mutation(() => ResourcePerformance)
-  createResourcePerformance(@Args('input') createResourcePerformanceInput: CreateResourcePerformanceInput) {
-    return this.resourcePerformanceService.create(createResourcePerformanceInput);
+  createResourcePerformance(
+    @Args('input')
+    createResourcePerformanceInput: CreateResourcePerformanceInput,
+  ) {
+    return this.resourcePerformanceService.create(
+      createResourcePerformanceInput,
+    );
   }
 
-  @Mutation(() => Boolean)
-  createResourcePerformances(@Args('inputs') createResourcePerformanceInputs: [CreateResourcePerformanceInput]) {
-    return this.resourcePerformanceService.creates(createResourcePerformanceInputs);
+  @Mutation(() => [ResourcePerformance])
+  async createResourcePerformances(
+    @Args('inputs', { type: () => [CreateResourcePerformanceInput] })
+    createResourcePerformanceInputs: CreateResourcePerformanceInput[],
+  ) {
+    return await this.resourcePerformanceService.creates(
+      createResourcePerformanceInputs,
+    );
   }
 
   @Query(() => [ResourcePerformance], { name: 'resourcePerformances' })
@@ -29,8 +41,13 @@ export class ResourcePerformanceResolver {
   }
 
   @Mutation(() => Number)
-  updateResourcePerformance(@Args('updateResourcePerformanceInput') updateResourcePerformanceInput: UpdateResourcePerformanceInput) {
-    return this.resourcePerformanceService.update(updateResourcePerformanceInput);
+  updateResourcePerformance(
+    @Args('updateResourcePerformanceInput')
+    updateResourcePerformanceInput: UpdateResourcePerformanceInput,
+  ) {
+    return this.resourcePerformanceService.update(
+      updateResourcePerformanceInput,
+    );
   }
 
   @Mutation(() => Number)

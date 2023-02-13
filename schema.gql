@@ -129,6 +129,7 @@ type Mutation {
   updateWebPerformance(updateWebPerformanceInput: UpdateWebPerformanceInput!): Float!
   removeWebPerformance(id: String!): Float!
   createResourcePerformance(input: CreateResourcePerformanceInput!): ResourcePerformance!
+  createResourcePerformances(inputs: [CreateResourcePerformanceInput!]!): [ResourcePerformance!]!
   updateResourcePerformance(updateResourcePerformanceInput: UpdateResourcePerformanceInput!): Float!
   removeResourcePerformance(id: String!): Float!
 }

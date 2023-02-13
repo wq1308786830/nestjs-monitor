@@ -14,15 +14,15 @@ import { ResourcePerformanceModule } from './resource-performance/resource-perfo
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      transformSchema: schema => upperDirectiveTransformer(schema, 'upper'),
+      transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
       installSubscriptionHandlers: true,
       buildSchemaOptions: {
         directives: [
           new GraphQLDirective({
             name: 'upper',
-            locations: [DirectiveLocation.FIELD_DEFINITION]
-          })
-        ]
+            locations: [DirectiveLocation.FIELD_DEFINITION],
+          }),
+        ],
       },
       debug: true,
       // playground: false,

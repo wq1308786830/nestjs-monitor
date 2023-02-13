@@ -7,7 +7,7 @@ import { UpdateCatInput } from './dto/update-cat.input';
 
 const pubSub = new PubSub();
 
-@Resolver(of => Cat)
+@Resolver((of) => Cat)
 export class CatsResolver {
   constructor(private readonly catsService: CatsService) {}
 
@@ -22,9 +22,11 @@ export class CatsResolver {
   }
 
   @Mutation(() => Cat)
-  async createCat(@Args('createCatInput') createCatInput: CreateCatInput): Promise<Cat> {
+  async createCat(
+    @Args('createCatInput') createCatInput: CreateCatInput,
+  ): Promise<Cat> {
     const resp = await this.catsService.create(createCatInput);
-    
+
     return resp;
   }
 
