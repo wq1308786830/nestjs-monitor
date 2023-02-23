@@ -55,6 +55,18 @@ type ResourcePerformance {
   id: ID!
 
   """entry的名称"""
+  createdAt: Float
+
+  """entry的名称"""
+  updatedAt: Float
+
+  """用户id"""
+  usrId: String
+
+  """设备id"""
+  dvcId: String
+
+  """entry的名称"""
   name: String
 
   """entry的类型"""
@@ -66,8 +78,8 @@ type ResourcePerformance {
   """entry持续的时间"""
   duration: Float
 
-  """上报时间"""
-  time: Float
+  """上报批次号"""
+  reportTime: Float
 
   """加载器"""
   initiatorType: String
@@ -213,8 +225,17 @@ input UpdateWebPerformanceInput {
 }
 
 input CreateResourcePerformanceInput {
+  """entry的类型"""
+  usrId: String
+
+  """entry的类型"""
+  dvcId: String
+
   """entry的名称"""
   name: String
+
+  """entry的名称"""
+  reportTime: Float
 
   """entry的类型"""
   entryType: String
@@ -269,8 +290,17 @@ input CreateResourcePerformanceInput {
 }
 
 input UpdateResourcePerformanceInput {
+  """entry的类型"""
+  usrId: String
+
+  """entry的类型"""
+  dvcId: String
+
   """entry的名称"""
   name: String
+
+  """entry的名称"""
+  reportTime: Float
 
   """entry的类型"""
   entryType: String

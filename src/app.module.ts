@@ -14,6 +14,7 @@ import { ResourcePerformanceModule } from './resource-performance/resource-perfo
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
+      context: ({ req }) => req,
       transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
       installSubscriptionHandlers: true,
       buildSchemaOptions: {

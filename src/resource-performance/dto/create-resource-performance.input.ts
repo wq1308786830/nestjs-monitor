@@ -2,8 +2,17 @@ import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateResourcePerformanceInput {
+  @Field({ nullable: true, description: 'entry的类型' })
+  usrId: string;
+
+  @Field({ nullable: true, description: 'entry的类型' })
+  dvcId: string;
+
   @Field({ nullable: true, description: 'entry的名称' })
   name: string;
+
+  @Field({ nullable: true, description: 'entry的名称' })
+  reportTime: number;
 
   @Field({ nullable: true, description: 'entry的类型' })
   entryType: string;

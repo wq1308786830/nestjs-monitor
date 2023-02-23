@@ -4,12 +4,27 @@ import { HydratedDocument } from 'mongoose';
 
 export type ResourcePerformanceDocument = HydratedDocument<ResourcePerformance>;
 
-@Schema()
+@Schema({ timestamps: true })
 @ObjectType({ description: 'resourcePerformance ' })
 export class ResourcePerformance {
   // @Prop() // Mongoose assigns each of your schemas an id virtual getter by default which returns the document's _id field
   @Field((type) => ID)
   id: string;
+
+  // timestamps 参数会让 Mongoose 自动开启创建时间和更新时间。
+  @Field((type) => Number, { nullable: true, description: 'entry的名称' })
+  createdAt: number;
+
+  @Field((type) => Number, { nullable: true, description: 'entry的名称' })
+  updatedAt: number;
+
+  @Prop()
+  @Field({ nullable: true, description: '用户id' })
+  usrId: string;
+
+  @Prop()
+  @Field({ nullable: true, description: '设备id' })
+  dvcId: string;
 
   @Prop()
   @Field({ nullable: true, description: 'entry的名称' })
@@ -28,8 +43,8 @@ export class ResourcePerformance {
   duration: number;
 
   @Prop()
-  @Field((type) => Number, { nullable: true, description: '上报时间' })
-  time: number;
+  @Field((type) => Number, { nullable: true, description: '上报批次号' })
+  reportTime: number;
 
   @Prop()
   @Field({ nullable: true, description: '加载器' })
