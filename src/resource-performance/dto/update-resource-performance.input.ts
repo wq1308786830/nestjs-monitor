@@ -2,7 +2,9 @@ import { CreateResourcePerformanceInput } from './create-resource-performance.in
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()
-export class UpdateResourcePerformanceInput extends PartialType(CreateResourcePerformanceInput) {
+export class UpdateResourcePerformanceInput extends PartialType(
+  CreateResourcePerformanceInput,
+) {
   @Field()
-  id: string;
+  id: number;
 }

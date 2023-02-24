@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResourcePerformanceService } from './resource-performance.service';
 import { ResourcePerformanceResolver } from './resource-performance.resolver';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ResourcePerformance, ResourcePerformanceSchema } from './entities/resource-performance.entity';
+import { ResourcePerformance } from './entities/resource-performance.entity';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: ResourcePerformance.name, schema: ResourcePerformanceSchema }])],
-  providers: [ResourcePerformanceResolver, ResourcePerformanceService]
+  imports: [TypeOrmModule.forFeature([ResourcePerformance])],
+  providers: [ResourcePerformanceResolver, ResourcePerformanceService],
 })
 export class ResourcePerformanceModule {}

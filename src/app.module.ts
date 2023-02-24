@@ -1,16 +1,24 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DirectiveLocation, GraphQLDirective } from 'graphql';
-import { CatsModule } from './cats/cats.module';
 import { upperDirectiveTransformer } from './common/directives/upper-case.directives';
-import { WebPerformanceModule } from './web-performance/web-performance.module';
 import { ResourcePerformanceModule } from './resource-performance/resource-performance.module';
+import { ResourcePerformance } from './resource-performance/entities/resource-performance.entity';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'nest',
+      entities: [ResourcePerformance],
+      synchronize: true,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
@@ -28,8 +36,6 @@ import { ResourcePerformanceModule } from './resource-performance/resource-perfo
       debug: true,
       // playground: false,
     }),
-    CatsModule,
-    WebPerformanceModule,
     ResourcePerformanceModule,
   ],
 })

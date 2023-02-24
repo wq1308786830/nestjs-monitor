@@ -50,7 +50,7 @@ export class ResourcePerformanceResolver {
   }
 
   @Query(() => ResourcePerformance, { name: 'resourcePerformance' })
-  findOne(@Args('id') id: string) {
+  findOne(@Args('id') id: number) {
     return this.resourcePerformanceService.findOne(id);
   }
 
@@ -65,7 +65,7 @@ export class ResourcePerformanceResolver {
   }
 
   @Mutation(() => Number)
-  removeResourcePerformance(@Args('id') id: string) {
+  removeResourcePerformance(@Args('id') id: number) {
     return this.resourcePerformanceService.remove(id);
   }
 }
